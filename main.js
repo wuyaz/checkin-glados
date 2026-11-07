@@ -304,7 +304,8 @@ const glados = async () => {
   console.log('===================================')
   console.log('\n========== 签到任务处理完成 ==========')
   console.log(`📊 统计结果：成功 ${successCount} 个 | 失败 ${failCount} 个`)
-  return notice
+  // 有任何账号失败就让进程返回非 0，Actions 会标红并发失败通知
+  if (failCount > 0) process.exitCode = 1 return notice
 }
 
 // ========== 通知推送模块 ==========
